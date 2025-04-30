@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Rate Trainify</title>
+<script>
+  /* --- ссылки прямо на форму «Оставить отзыв» --- */
+  const iosLink    = "itms-apps://itunes.apple.com/app/id6478853220?action=write-review";
+  const androidLink = "market://details?id=com.expo.trainify.production.android";
+
+  /* --- определяем платформу --- */
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(ua)) {
+    location.replace(androidLink);          // ➜ Google Play
+  } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+    location.replace(iosLink);              // ➜ App Store
+  } else {
+    /* попали с десктопа или неизвестного устройства — отправим на сайт */
+    location.replace("https://trainify.app");
+  }
+</script>
+
+<!-- На случай, если JS выключен -->
+<p style="font-family:sans-serif">Если ничего не произошло, откройте <a href="https://trainify.app">сайт Trainify</a>.</p>
