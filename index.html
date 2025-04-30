@@ -2,22 +2,32 @@
 <meta charset="utf-8">
 <title>Rate Trainify</title>
 <script>
-  /* --- ссылки прямо на форму «Оставить отзыв» --- */
-  const iosLink    = "itms-apps://itunes.apple.com/app/id6478853220?action=write-review";
+  /* Direct link to the “Write a review” screen in the App Store / Прямая ссылка на форму «Оставить отзыв» в App Store */
+  const iosLink = "itms-apps://itunes.apple.com/app/id6478853220?action=write-review";
+
+  /* Direct link to the “Write a review” screen in Google Play / Прямая ссылка на форму «Оставить отзыв» в Google Play */
   const androidLink = "market://details?id=com.expo.trainify.production.android";
 
-  /* --- определяем платформу --- */
+  /* Detect platform (Android, iOS, or other) / Определяем платформу: Android, iOS или другое */
   const ua = navigator.userAgent || navigator.vendor || window.opera;
 
   if (/android/i.test(ua)) {
-    location.replace(androidLink);          // ➜ Google Play
+    /* Android device → go to Google Play / Android-устройство → переходим в Google Play */
+    location.replace(androidLink);
   } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-    location.replace(iosLink);              // ➜ App Store
+    /* iOS device → go to App Store / iOS-устройство → переходим в App Store */
+    location.replace(iosLink);
   } else {
-    /* попали с десктопа или неизвестного устройства — отправим на сайт */
-    location.replace("https://trainify.app");
+    /* Desktop or unknown device → open website / Десктоп или неизвестное устройство → открываем сайт */
+    location.replace("https://www.trainify.com/");
   }
 </script>
 
-<!-- На случай, если JS выключен -->
-<p style="font-family:sans-serif">Если ничего не произошло, откройте <a href="https://trainify.app">сайт Trainify</a>.</p>
+<!-- Fallback if JavaScript is disabled / Сообщение, если JavaScript отключён -->
+<p style="font-family:sans-serif">
+  Redirecting… If nothing happens, open
+  <a href="https://www.trainify.com/">Trainify website</a>.
+  <br>
+  Перенаправляем… Если ничего не произошло, откройте
+  <a href="https://www.trainify.com/">сайт Trainify</a>.
+</p>
